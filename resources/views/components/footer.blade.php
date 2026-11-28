@@ -3,7 +3,6 @@
 
         <div class="row g-4">
 
-            <!-- Marca -->
             <div class="col-lg-5">
                 <h3 class="fw-bold">Beauty Booking</h3>
 
@@ -13,7 +12,6 @@
                 </p>
             </div>
 
-            <!-- Navegação -->
             <div class="col-6 col-lg-3">
                 <h5 class="fw-bold mb-3">Navegação</h5>
 
@@ -26,7 +24,6 @@
                 </ul>
             </div>
 
-            <!-- Contactos -->
             <div class="col-6 col-lg-4">
                 <h5 class="fw-bold mb-3">Contactos</h5>
 

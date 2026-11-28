@@ -1,3 +1,4 @@
+use Illuminate\Support\Facades\Route;
 <x-layouts.app title="Início | Beauty Booking">
 
     <section class="hero-section">
@@ -34,7 +35,6 @@
 
             <div class="row align-items-center g-5">
 
-                <!-- Text -->
                 <div class="col-lg-6">
 
                     <span class="text-uppercase about-subtitle">
@@ -62,7 +62,6 @@
 
                 </div>
 
-                <!-- Image -->
                 <div class="col-lg-6">
 
                     <img src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?auto=format&fit=crop&w=1000&q=85"
@@ -79,7 +78,6 @@
     <section id="services" class="py-5 services-section">
         <div class="container py-lg-5">
 
-            <!-- Title -->
             <div class="text-center mb-5">
                 <span class="text-uppercase about-subtitle">
                     Os nossos serviços
@@ -94,93 +92,46 @@
                 </p>
             </div>
 
-            <!-- services -->
             <div class="row g-4">
+                @forelse ($services as $service)
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card service-card h-100 border-0">
+                            <div class="card-body p-4">
 
-                <!-- service 1 -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="card service-card h-100 border-0">
+                                <h5 class="card-title fw-bold">
+                                    {{ $service->name }}
+                                </h5>
 
-                        <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=800&q=85"
-                            class="card-img-top" alt="Manicure">
+                                <p class="card-text text-muted">
+                                    {{ $service->description ?? 'Descobre este serviço no nosso espaço.' }}
+                                </p>
 
-                        <div class="card-body p-4">
-                            <h5 class="card-title fw-bold">
-                                Manicure
-                            </h5>
+                                <div class="d-flex justify-content-between align-items-center mt-4">
 
-                            <p class="card-text text-muted">
-                                Cuida das tuas mãos com um serviço profissional e personalizado.
-                            </p>
+                                    <div>
+                                        <span class="fw-bold">
+                                            {{ number_format((float) $service->price, 2, ',', '.') }} €
+                                        </span>
 
-                            <div class="d-flex justify-content-between align-items-center mt-4">
-                                <span class="fw-bold">Desde 15€</span>
+                                        <small class="text-muted d-block">
+                                            {{ $service->duration_minutes }} minutos
+                                        </small>
+                                    </div>
 
-                                <a href="#booking" class="btn btn-outline-dark rounded-pill">
-                                    Marcar
-                                </a>
+                                    <a href="#booking" class="btn btn-outline-dark rounded-pill">
+                                        Marcar
+                                    </a>
+                                </div>
                             </div>
                         </div>
-
                     </div>
-                </div>
-
-                <!-- service 2 -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="card service-card h-100 border-0">
-
-                        <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=85"
-                            class="card-img-top" alt="Cabeleireiro">
-
-                        <div class="card-body p-4">
-                            <h5 class="card-title fw-bold">
-                                Cabeleireiro
-                            </h5>
-
-                            <p class="card-text text-muted">
-                                Realça o teu estilo com cuidados e tratamentos para o cabelo.
-                            </p>
-
-                            <div class="d-flex justify-content-between align-items-center mt-4">
-                                <span class="fw-bold">Desde 25€</span>
-
-                                <a href="#booking" class="btn btn-outline-dark rounded-pill">
-                                    Marcar
-                                </a>
-                            </div>
-                        </div>
-
+                @empty
+                    <div class="col-12 text-center">
+                        <p class="text-muted">
+                            De momento, não existem serviços disponíveis.
+                        </p>
                     </div>
-                </div>
-
-                <!-- service 3 -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="card service-card h-100 border-0">
-
-                        <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=800&q=85"
-                            class="card-img-top" alt="Tratamento facial">
-
-                        <div class="card-body p-4">
-                            <h5 class="card-title fw-bold">
-                                Tratamentos faciais
-                            </h5>
-
-                            <p class="card-text text-muted">
-                                Momentos de cuidado para revitalizar e cuidar da tua pele.
-                            </p>
-
-                            <div class="d-flex justify-content-between align-items-center mt-4">
-                                <span class="fw-bold">Desde 30€</span>
-
-                                <a href="#booking" class="btn btn-outline-dark rounded-pill">
-                                    Marcar
-                                </a>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
+                @endforelse
             </div>
         </div>
     </section>
@@ -188,7 +139,6 @@
     <section id="gallery" class="py-5 gallery-section">
         <div class="container py-lg-5">
 
-            <!-- Title -->
             <div class="text-center mb-5">
                 <span class="text-uppercase about-subtitle">
                     O nosso trabalho
@@ -203,7 +153,6 @@
                 </p>
             </div>
 
-            <!-- Images -->
             <div class="row g-3">
 
                 <div class="col-6 col-md-4">
@@ -246,7 +195,6 @@
 
             <div class="row align-items-center g-5">
 
-                <!-- Texto -->
                 <div class="col-lg-5">
 
                     <span class="text-uppercase about-subtitle">
@@ -264,7 +212,6 @@
 
                 </div>
 
-                <!-- form -->
                 <div class="col-lg-7">
 
                     <div class="booking-card p-4 p-lg-5">
@@ -277,17 +224,14 @@
 
                             <div class="row g-3">
 
-                                <!-- name -->
                                 <div class="col-md-6">
                                     <label for="name" class="form-label">
                                         Nome completo
                                     </label>
 
-                                    <input type="text" id="name" class="form-control"
-                                        placeholder="O teu nome">
+                                    <input type="text" id="name" class="form-control" placeholder="O teu nome">
                                 </div>
 
-                                <!-- phone -->
                                 <div class="col-md-6">
                                     <label for="phone" class="form-label">
                                         Telemóvel
@@ -297,7 +241,6 @@
                                         placeholder="912 345 678">
                                 </div>
 
-                                <!-- service -->
                                 <div class="col-12">
                                     <label for="service" class="form-label">
                                         Serviço
@@ -314,7 +257,6 @@
                                     </select>
                                 </div>
 
-                                <!-- date -->
                                 <div class="col-md-6">
                                     <label for="date" class="form-label">
                                         Data
@@ -323,7 +265,6 @@
                                     <input type="date" id="date" class="form-control">
                                 </div>
 
-                                <!-- time -->
                                 <div class="col-md-6">
                                     <label for="time" class="form-label">
                                         Hora pretendida
@@ -343,7 +284,6 @@
                                     </select>
                                 </div>
 
-                                <!-- observations -->
                                 <div class="col-12">
                                     <label for="notes" class="form-label">
                                         Observações (opcional)
@@ -352,7 +292,6 @@
                                     <textarea id="notes" class="form-control" rows="3" placeholder="Alguma informação adicional?"></textarea>
                                 </div>
 
-                                <!-- btn -->
                                 <div class="col-12">
                                     <button type="submit" class="btn btn-dark rounded-pill w-100 py-3">
                                         Solicitar marcação
@@ -391,7 +330,6 @@
 
             <div class="row g-4">
 
-                <!-- Morada -->
                 <div class="col-md-4">
                     <div class="contact-card text-center p-4 h-100">
                         <div class="contact-icon">📍</div>
@@ -402,7 +340,6 @@
                     </div>
                 </div>
 
-                <!-- Telefone -->
                 <div class="col-md-4">
                     <div class="contact-card text-center p-4 h-100">
                         <div class="contact-icon">📞</div>
@@ -413,7 +350,6 @@
                     </div>
                 </div>
 
-                <!-- Email -->
                 <div class="col-md-4">
                     <div class="contact-card text-center p-4 h-100">
                         <div class="contact-icon">✉️</div>
@@ -426,7 +362,6 @@
 
             </div>
 
-            <!-- WhatsApp -->
             <div class="text-center mt-5">
                 <p class="text-muted">
                     Preferes falar connosco diretamente?

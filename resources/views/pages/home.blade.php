@@ -1,4 +1,3 @@
-use Illuminate\Support\Facades\Route;
 <x-layouts.app title="Início | Beauty Booking">
 
     <section class="hero-section">
@@ -216,72 +215,107 @@ use Illuminate\Support\Facades\Route;
 
                     <div class="booking-card p-4 p-lg-5">
 
+                        @if (session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+                        
                         <h3 class="fw-bold mb-4">
                             Fazer marcação
                         </h3>
 
-                        <form>
+                        <form method="POST" action="{{ route('bookings.store') }}">
+                            @csrf
 
                             <div class="row g-3">
 
                                 <div class="col-md-6">
-                                    <label for="name" class="form-label">
+                                    <label for="client_name" class="form-label">
                                         Nome completo
                                     </label>
 
-                                    <input type="text" id="name" class="form-control" placeholder="O teu nome">
+                                    <input type="text" id="client_name" name="client_name"
+                                        value="{{ old('client_name') }}"
+                                        class="form-control @error('client_name') is-invalid @enderror"
+                                        placeholder="O teu nome" required>
+
+                                    @error('client_name')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label for="phone" class="form-label">
+                                    <label for="client_phone" class="form-label">
                                         Telemóvel
                                     </label>
 
-                                    <input type="tel" id="phone" class="form-control"
-                                        placeholder="912 345 678">
+                                    <input type="tel" id="client_phone" name="client_phone"
+                                        value="{{ old('client_phone') }}"
+                                        class="form-control @error('client_phone') is-invalid @enderror"
+                                        placeholder="912 345 678" required>
+
+                                    @error('client_phone')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <div class="col-12">
-                                    <label for="service" class="form-label">
+                                    <label for="client_email" class="form-label">
+                                        Email
+                                    </label>
+
+                                    <input type="email" id="client_email" name="client_email"
+                                        value="{{ old('client_email') }}"
+                                        class="form-control @error('client_email') is-invalid @enderror"
+                                        placeholder="exemplo@email.com" required>
+
+                                    @error('client_email')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="col-12">
+                                    <label for="service_id" class="form-label">
                                         Serviço
                                     </label>
 
-                                    <select id="service" class="form-select">
-                                        <option selected disabled>
+                                    <select id="service_id" name="service_id"
+                                        class="form-select @error('service_id') is-invalid @enderror" required>
+                                        <option value="" disabled @selected(!old('service_id'))>
                                             Escolhe um serviço
                                         </option>
 
-                                        <option>Manicure</option>
-                                        <option>Cabeleireiro</option>
-                                        <option>Tratamentos faciais</option>
+                                        @forelse ($services as $service)
+                                            <option value="{{ $service->id }}" @selected(old('service_id') == $service->id)>
+                                                {{ $service->name }}
+                                                — {{ number_format((float) $service->price, 2, ',', '.') }} €
+                                                ({{ $service->duration_minutes }} min)
+                                            </option>
+                                        @empty
+                                            <option value="" disabled>
+                                                Não existem serviços disponíveis
+                                            </option>
+                                        @endforelse
                                     </select>
+
+                                    @error('service_id')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
-                                <div class="col-md-6">
-                                    <label for="date" class="form-label">
-                                        Data
+                                <div class="col-12">
+                                    <label for="starts_at" class="form-label">
+                                        Data e hora pretendidas
                                     </label>
 
-                                    <input type="date" id="date" class="form-control">
-                                </div>
+                                    <input type="datetime-local" id="starts_at" name="starts_at"
+                                        value="{{ old('starts_at') }}" min="{{ now()->format('Y-m-d\TH:i') }}"
+                                        class="form-control @error('starts_at') is-invalid @enderror" required>
 
-                                <div class="col-md-6">
-                                    <label for="time" class="form-label">
-                                        Hora pretendida
-                                    </label>
-
-                                    <select id="time" class="form-select">
-                                        <option selected disabled>
-                                            Escolhe um horário
-                                        </option>
-
-                                        <option>09:00</option>
-                                        <option>10:00</option>
-                                        <option>11:00</option>
-                                        <option>14:00</option>
-                                        <option>15:00</option>
-                                        <option>16:00</option>
-                                    </select>
+                                    @error('starts_at')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <div class="col-12">
@@ -289,18 +323,24 @@ use Illuminate\Support\Facades\Route;
                                         Observações (opcional)
                                     </label>
 
-                                    <textarea id="notes" class="form-control" rows="3" placeholder="Alguma informação adicional?"></textarea>
+                                    <textarea id="notes" name="notes" rows="3" class="form-control @error('notes') is-invalid @enderror"
+                                        placeholder="Alguma informação adicional?">{{ old('notes') }}</textarea>
+
+                                    @error('notes')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <div class="col-12">
-                                    <button type="submit" class="btn btn-dark rounded-pill w-100 py-3">
+                                    <button type="submit" class="btn btn-dark rounded-pill w-100 py-3"
+                                        @disabled($services->isEmpty())>
                                         Solicitar marcação
                                     </button>
                                 </div>
 
                             </div>
-
                         </form>
+
 
                     </div>
 

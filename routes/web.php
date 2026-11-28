@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\Admin\BookingController as AdminBookingController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::post('/bookings', [BookingController::class, 'store'])
@@ -28,4 +29,7 @@ Route::prefix('admin')
         Route::put('/services/{service}', [ServiceController::class, 'update'])->name('services.update');
 
         Route::patch('/services/{service}/status', [ServiceController::class, 'toggleStatus'])->name('services.toggle-status');
+
+        Route::get('/bookings', [AdminBookingController::class, 'index'])
+            ->name('bookings.index');
     });

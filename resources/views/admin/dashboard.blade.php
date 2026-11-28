@@ -19,6 +19,9 @@
                     <p class="text-muted mb-0">
                         Consulta e gere as marcações dos clientes.
                     </p>
+                    <a href="{{ route('admin.bookings.index') }}" class="btn btn-outline-dark btn-sm mt-3">
+                        Consultar marcações
+                    </a>
                 </div>
             </div>
         </div>

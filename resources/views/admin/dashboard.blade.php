@@ -1,4 +1,3 @@
-
 <x-layouts.admin title="Dashboard | Beauty Booking">
 
     <div class="mb-4">

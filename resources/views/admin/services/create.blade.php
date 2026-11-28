@@ -13,7 +13,6 @@
             <form method="POST" action="{{ route('admin.services.store') }}">
                 @csrf
 
-                <!-- Nome -->
                 <div class="mb-3">
                     <label for="name" class="form-label">
                         Nome do serviço
@@ -27,7 +26,6 @@
                     @enderror
                 </div>
 
-                <!-- Descrição -->
                 <div class="mb-3">
                     <label for="description" class="form-label">
                         Descrição
@@ -43,7 +41,6 @@
 
                 <div class="row">
 
-                    <!-- Preço -->
                     <div class="col-md-6 mb-3">
                         <label for="price" class="form-label">
                             Preço (€)
@@ -58,7 +55,6 @@
                         @enderror
                     </div>
 
-                    <!-- Duração -->
                     <div class="col-md-6 mb-3">
                         <label for="duration_minutes" class="form-label">
                             Duração (minutos)
@@ -76,7 +72,6 @@
 
                 </div>
 
-                <!-- Estado -->
                 <div class="form-check mb-4">
                     <input type="hidden" name="is_active" value="0">
 
@@ -88,7 +83,6 @@
                     </label>
                 </div>
 
-                <!-- Botões -->
                 <div class="d-flex gap-2">
 
                     <button type="submit" class="btn btn-dark">

@@ -1,3 +1,4 @@
+use Illuminate\Support\Facades\Route;
 <x-layouts.app title="Início | Beauty Booking">
 
     <section class="hero-section">
@@ -188,7 +189,6 @@
     <section id="gallery" class="py-5 gallery-section">
         <div class="container py-lg-5">
 
-            <!-- Title -->
             <div class="text-center mb-5">
                 <span class="text-uppercase about-subtitle">
                     O nosso trabalho
@@ -203,7 +203,6 @@
                 </p>
             </div>
 
-            <!-- Images -->
             <div class="row g-3">
 
                 <div class="col-6 col-md-4">
@@ -246,7 +245,6 @@
 
             <div class="row align-items-center g-5">
 
-                <!-- Texto -->
                 <div class="col-lg-5">
 
                     <span class="text-uppercase about-subtitle">
@@ -264,7 +262,6 @@
 
                 </div>
 
-                <!-- form -->
                 <div class="col-lg-7">
 
                     <div class="booking-card p-4 p-lg-5">
@@ -277,7 +274,6 @@
 
                             <div class="row g-3">
 
-                                <!-- name -->
                                 <div class="col-md-6">
                                     <label for="name" class="form-label">
                                         Nome completo
@@ -287,7 +283,6 @@
                                         placeholder="O teu nome">
                                 </div>
 
-                                <!-- phone -->
                                 <div class="col-md-6">
                                     <label for="phone" class="form-label">
                                         Telemóvel
@@ -297,7 +292,6 @@
                                         placeholder="912 345 678">
                                 </div>
 
-                                <!-- service -->
                                 <div class="col-12">
                                     <label for="service" class="form-label">
                                         Serviço
@@ -314,7 +308,6 @@
                                     </select>
                                 </div>
 
-                                <!-- date -->
                                 <div class="col-md-6">
                                     <label for="date" class="form-label">
                                         Data
@@ -323,7 +316,6 @@
                                     <input type="date" id="date" class="form-control">
                                 </div>
 
-                                <!-- time -->
                                 <div class="col-md-6">
                                     <label for="time" class="form-label">
                                         Hora pretendida
@@ -343,7 +335,6 @@
                                     </select>
                                 </div>
 
-                                <!-- observations -->
                                 <div class="col-12">
                                     <label for="notes" class="form-label">
                                         Observações (opcional)
@@ -352,7 +343,6 @@
                                     <textarea id="notes" class="form-control" rows="3" placeholder="Alguma informação adicional?"></textarea>
                                 </div>
 
-                                <!-- btn -->
                                 <div class="col-12">
                                     <button type="submit" class="btn btn-dark rounded-pill w-100 py-3">
                                         Solicitar marcação
@@ -391,7 +381,6 @@
 
             <div class="row g-4">
 
-                <!-- Morada -->
                 <div class="col-md-4">
                     <div class="contact-card text-center p-4 h-100">
                         <div class="contact-icon">📍</div>
@@ -402,7 +391,6 @@
                     </div>
                 </div>
 
-                <!-- Telefone -->
                 <div class="col-md-4">
                     <div class="contact-card text-center p-4 h-100">
                         <div class="contact-icon">📞</div>
@@ -413,7 +401,6 @@
                     </div>
                 </div>
 
-                <!-- Email -->
                 <div class="col-md-4">
                     <div class="contact-card text-center p-4 h-100">
                         <div class="contact-icon">✉️</div>
@@ -426,7 +413,6 @@
 
             </div>
 
-            <!-- WhatsApp -->
             <div class="text-center mt-5">
                 <p class="text-muted">
                     Preferes falar connosco diretamente?

@@ -22,4 +22,10 @@ Route::prefix('admin')
 
         Route::post('/services', [ServiceController::class, 'store'])
             ->name('services.store');
+
+        Route::get('/services/{service}/edit', [ServiceController::class, 'edit'])
+            ->name('services.edit');
+
+        Route::put('/services/{service}', [ServiceController::class, 'update'])
+            ->name('services.update');
     });

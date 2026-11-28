@@ -15,7 +15,7 @@
 
     <div class="card border-0 shadow-sm">
         <div class="card-body">
-            
+
             @if (session('success'))
                 <div class="alert alert-success">
                     {{ session('success') }}
@@ -47,12 +47,15 @@
                         @else
                             <span class="badge bg-secondary">Inativo</span>
                         @endif
+
+                        <div class="mt-2">
+                            <a href="{{ route('admin.services.edit', $service) }}" class="btn btn-outline-dark btn-sm">
+                                Editar
+                            </a>
+                        </div>
                     </div>
-
                 </div>
-
             @empty
-
                 <div class="text-center py-5">
                     <h5>Ainda não existem serviços.</h5>
                     <p class="text-muted mb-0">

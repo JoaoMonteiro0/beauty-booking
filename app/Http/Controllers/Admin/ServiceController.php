@@ -96,6 +96,22 @@ class ServiceController extends Controller
             ->with('success', 'Serviço atualizado com sucesso!');
     }
 
+    public function toggleStatus(Request $request, Service $service): RedirectResponse
+    {
+        abort_unless($request->user()?->role === 'admin', 403);
+
+        $service->update([
+            'is_active' => !$service->is_active,
+        ]);
+
+        $message = $service->is_active
+            ? 'Serviço ativado com sucesso!'
+            : 'Serviço desativado com sucesso!';
+
+        return to_route('admin.services.index')
+            ->with('success', $message);
+    }
+
     /**
      * Remove the specified resource from storage.
      */

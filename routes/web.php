@@ -28,4 +28,7 @@ Route::prefix('admin')
 
         Route::put('/services/{service}', [ServiceController::class, 'update'])
             ->name('services.update');
+
+        Route::patch('/services/{service}/status', [ServiceController::class, 'toggleStatus'])
+            ->name('services.toggle-status');
     });

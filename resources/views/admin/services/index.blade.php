@@ -48,10 +48,27 @@
                             <span class="badge bg-secondary">Inativo</span>
                         @endif
 
-                        <div class="mt-2">
+                        <div class="mt-2 d-flex justify-content-end gap-2">
+
                             <a href="{{ route('admin.services.edit', $service) }}" class="btn btn-outline-dark btn-sm">
                                 Editar
                             </a>
+
+                            <form method="POST" action="{{ route('admin.services.toggle-status', $service) }}"
+                                onsubmit="return confirm('Pretendes alterar o estado deste serviço?')">
+
+                                @csrf
+                                @method('PATCH')
+
+                                <button type="submit"
+                                    class="btn btn-sm {{ $service->is_active ? 'btn-outline-danger' : 'btn-outline-success' }}">
+
+                                    {{ $service->is_active ? 'Desativar' : 'Ativar' }}
+
+                                </button>
+
+                            </form>
+
                         </div>
                     </div>
                 </div>
